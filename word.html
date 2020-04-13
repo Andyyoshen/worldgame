@@ -1,0 +1,103 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+    
+    <body>
+        <div id="app">
+        <input type="text" v-model='keyword'>
+            
+            <button  v-on:click="seach">確定</button>
+<!--            <div v-for="n in 10">-->
+<!--             {{messages.name}}-->
+<!--            </div>-->
+            {{apper[0].ID}}
+<!--
+            <template v-for="x in messages">
+                
+                {{x.name}}
+                
+            </template>
+-->
+<!--
+            <template v-model="Rds">
+                {{messages[Rds]}}
+            
+            </template>
+-->
+            <audio id="Music">
+                <source src="/ms/curret.wav">
+            </audio>
+        </div>
+        <script>
+            var abc =5;
+        new Vue({
+            el: '#app',
+            data: {
+                messages : [
+                    {ID:'蘋果',name:'apple'},
+                    {ID:'香蕉',name:'banana'},
+                    {ID:'水',name:'water'},
+                    {ID:'筆',name:'pen'},
+                    {ID:'小',name:'little'},
+                    {ID:'手指',name:'finger'},
+                ],
+                Rds :0,
+                apper :[],
+                keyword:''
+            },
+            computed:{
+              seaech : function(){
+                  if(this.keyword){
+//                     return this.apper.filter(item=>{
+//                       return  item.name === this.keyword
+//                        console.log(this.keyword)
+//                      })
+                      console.log("r")
+                  }
+//                  console.log(r)
+              }  
+            },
+            methods :{
+                seach : function(){
+                  if(this.keyword){
+                    this.apper.filter(item=>{
+                       if(item.name == this.keyword)
+                       {
+                        var audio = document.getElementById("Music");
+                        audio.play();
+                        var x=Math.floor(Math.random()*5)+1;
+                        this.apper.splice(0,1,{ID:this.messages[x].ID,
+                                               name:this.messages[x].name});
+                        
+                        console.log("rr")
+                          console.log(this.apper[0].ID)
+                          this.keyword=''
+                        }
+                          else{
+                              alert("錯誤");
+                          }
+                    })
+                   
+//                      console.log("r")
+                  }
+//                  console.log(r)
+              }  
+            },
+            created (){
+               
+                var x=Math.floor(Math.random()*5)+1;
+//               console.log(x)
+                this.apper.push({ID:this.messages[x].ID,
+                                 name:this.messages[x].name});
+                console.log(this.apper)
+                console.log(this.apper[0])
+                console.log(x)
+              
+            }
+        })
+        
+        </script>
+    </body>
+</html>
